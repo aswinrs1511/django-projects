@@ -21,3 +21,36 @@ def register(request):
             return render(request,"register.html",context={"result":result})
 
     return render(request,'register.html')
+
+
+def calc(request):
+    #taking inputs
+    if(request.method=="POST"):
+        data=request.POST
+        
+        firstnumber=data.get("firstNumber")
+        firstnumber=int(firstnumber)
+        
+        secondnumber=data.get("secondNumber")
+        secondnumber=int(secondnumber)
+
+        #on button press
+        if("Add" in request.POST):
+            result = firstnumber+secondnumber
+            print(result)
+            return render(request,"calc.html",context={"result":"Sum="+str(result)})
+        elif("Subtract" in request.POST):
+            result = firstnumber-secondnumber
+            print(result)
+            return render(request,"calc.html",context={"result":"Difference="+str(result)})
+        elif("Multiply" in request.POST):
+            result = firstnumber * secondnumber
+            print(result)
+            return render(request,"calc.html",context={"result":"Product="+str(result)})
+        elif("Divide" in request.POST):
+            result = firstnumber/secondnumber
+            print(result)
+            return render(request,"calc.html",context={"result":"Division="+str(result)})
+        else:
+            print("Enter valid")
+    return render(request,'calc.html')
