@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register Page</title>
+  </head>
+  <body>
+    <form method="POST">
+      {% csrf_token %}
+      <h1>Register page</h1>
+      <table>
+        <tr> 
+          <td>First Name:</td>
+          <td>
+            <input type="text" name="firstName" placeholder="Enter Your First Name" />
+          </td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td>
+            <input type="text" name="lastName" placeholder="Enter Your First Name" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" name="buttonSubmit" style="background: aqua; color: red; font-size: medium;">Submit</button>
+          </td>
+        </tr>
+        <td>{{ result }}</td>
+      </table>
+    </form>
+  </body>
+</html>

@@ -20,5 +20,8 @@ from basics.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('about/',about,name="about")
+    path('about/',about,name="about"),
+    path('aboutus/',aboutus,name="aboutus"),
+    path('register/',register,name="register"),
+
 ]
