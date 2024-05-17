@@ -51,6 +51,7 @@ def calc(request):
             result = firstnumber/secondnumber
             print(result)
             return render(request,"calc.html",context={"result":"Division="+str(result)})
+        
         else:
             print("Enter valid")
     return render(request,'calc.html')
