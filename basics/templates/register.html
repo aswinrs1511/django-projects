@@ -4,6 +4,10 @@
     <title>Register Page</title>
   </head>
   <body>
+    {% extends 'index.html' %}
+    {% block content %}
+    
+    
     <form method="POST">
       {% csrf_token %}
       <h1>Register Page</h1>
@@ -25,8 +29,11 @@
             <button type="submit" name="buttonSubmit" style="background: aqua; color: red; font-size: medium;">Submit</button>
           </td>
         </tr>
-        <td>{{ result }}</td>
       </table>
+      {{ result }}
+
     </form>
+  {% endblock %}
+
   </body>
 </html>

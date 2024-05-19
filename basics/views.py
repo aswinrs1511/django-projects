@@ -55,3 +55,7 @@ def calc(request):
         else:
             print("Enter valid")
     return render(request,'calc.html')
+
+
+def index(request):
+    return render(request,'index.html')

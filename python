@@ -1,0 +1,3 @@
+Migrations for 'basics':
+  basics\migrations\0001_initial.py
+    - Create model StudentDepartment
