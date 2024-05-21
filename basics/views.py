@@ -85,5 +85,41 @@ def departmentview(request):
 
 
 def marks(request):
+    if(request.method=="POST"):
+        data=request.POST
+
+        hours=data.get("texthours")
+        age=data.get("textage")
+        internet=data.get("textinternet")
+
+        if "predict" in request.POST:
+            import pandas as pd
+            path ="C:\\Users\\Aswin\\OneDrive\\Desktop\\Datanew\\Exammarks.csv"
+            data = pd.read_csv(path)
+
+
+
+            #to handle missing values find median values
+            median_value=data.hours.median()
+            # 7.109999999999999 is the median
+
+            #fill missing values with median
+            data.hours=data.hours.fillna(median_value)
+
+            inputs =  data.drop('marks','columns')
+            output = data.drop(['hours','age','internet'],'columns')
+
+            import sklearn
+            from sklearn import linear_model
+            model=linear_model.LinearRegression()
+            model.fit(inputs,output)
+            result = model.predict([[float(hours),int(age),int(internet)]])
+
+            return render(request,'marks.html',context={'result':"Marks="+str(result)})
+
+
+
+
+
     return render(request,"marks.html")
 
