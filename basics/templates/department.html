@@ -1,0 +1,31 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        {% extends 'index.html'%}
+        {% block content%}
+        <br/>
+        <form method="POST">
+          {% csrf_token %}
+            <table>
+                <tr> 
+                  <td>Department Name</td>
+                  <td>
+                    <input type="text" name="textdepartmentname" class="form-control" placeholder="Dept name" required/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Description</td>
+                  <td>
+                    <input type="text" name="textdepartmentdesc" class="form-control" placeholder="description" required/>
+                  </td>
+                </tr>
+              </table>
+              <p></p>
+                    <button type="submit" class="btn btn-primary" name="submit">Save</button>
+                    {{result}}
+        </form>
+        {% endblock %}
+    </body>
+</html>

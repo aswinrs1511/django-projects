@@ -1,0 +1,27 @@
+<html>
+    <head>
+    </head>
+    <body>
+        {% extends 'index.html'%}
+        {% block content%}
+        <form method = "POST">
+            {% csrf_token%}
+            <br/>
+            <table>
+                <tr>
+                    <td>Department name</td>
+                    <td>Department Description</td>
+                </tr>
+                {% for department in getdepartments%}
+                <tr>
+                    <td>{{ department.DEPT_NAME }}</td>
+                    <td>{{department.DEPT_DESC}}</td>
+                </tr>
+                {% endfor%}
+            </table>
+        </form>
+        {% endblock %}
+
+    </body>
+
+</html>

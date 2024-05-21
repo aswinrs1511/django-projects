@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from basics.models import StudentDepartment
+
 
 # Create your views here.
 def about(request):
@@ -59,3 +61,25 @@ def calc(request):
 
 def index(request):
     return render(request,'index.html')
+
+
+def department(request):
+    if(request.method=="POST"):
+        data=request.POST
+        
+        deptname=data.get("textdepartmentname")
+        deptdesc=data.get("textdepartmentdesc")
+
+        StudentDepartment.objects.create(DEPT_NAME=deptname,DEPT_DESC=deptdesc)
+        result = "Department details saved successfully "
+        return render(request,'department.html',context={'result':result})
+
+    return render(request,'department.html')
+
+
+
+
+def departmentview(request):
+    getdepartments=StudentDepartment.objects.all()
+    return render(request,'departmentview.html',context={'getdepartments':getdepartments})
+

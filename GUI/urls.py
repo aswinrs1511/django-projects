@@ -25,6 +25,10 @@ urlpatterns = [
     path('register/',register,name="register"),
     path('calc/',calc,name="calc"),
     path('index/',index,name="index"),
+    path('dept/',department,name="department"),
+    path('deptview/',departmentview,name="departmentview"),
+
+
 
 
 
