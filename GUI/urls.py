@@ -27,6 +27,8 @@ urlpatterns = [
     path('index/',index,name="index"),
     path('dept/',department,name="department"),
     path('deptview/',departmentview,name="departmentview"),
+    path('marks/',marks,name="marks"),
+
 
 
 

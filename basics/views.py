@@ -83,3 +83,7 @@ def departmentview(request):
     getdepartments=StudentDepartment.objects.all()
     return render(request,'departmentview.html',context={'getdepartments':getdepartments})
 
+
+def marks(request):
+    return render(request,"marks.html")
+

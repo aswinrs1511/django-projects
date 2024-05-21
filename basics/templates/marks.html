@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  
+  <body style="background-color:powderblue;"> 
+    {% extends 'index.html' %}
+    {% block content %}
+    
+    <form method="POST">
+      {% csrf_token %}
+      <h1>MARK PREDICTOR</h1>
+      <table>
+        <tr> 
+          <td>Enter hours</td>
+          <td>
+            <input type="text" name="hours" placeholder="Hours" required/>
+          </td>
+        </tr>
+        <tr>
+          <td>Enter Age</td>
+          <td>
+            <input type="text" name="age" placeholder="Age" required/>
+          </td>
+        </tr>
+        <tr>
+            <td>Enter the internet</td>
+            <td>
+              <input type="text" name="secondNumber" placeholder="Enter the internet" required/>
+            </td>
+          </tr>
+      </table>
+      <p></p>
+            <button type="submit" name="predict">PREDICT</button>
+    </form>
+
+        
+            
+        
+        <p>{{ result }}</p>
+  {% endblock %}
+
+  </body>
+</html>
