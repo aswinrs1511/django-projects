@@ -15,3 +15,8 @@ class StudentDepartment(models.Model):
     DEPT_NAME = models.CharField(max_length=500)
     DEPT_DESC = models.CharField(max_length=500)
 
+
+class StudentDetails(models.Model):
+    STU_NAME=models.CharField(max_length=500)
+    STU_EMAIL=models.CharField(max_length=500)
+    STU_DEPT=models.CharField(max_length=500)
