@@ -28,6 +28,8 @@ urlpatterns = [
     path('dept/',department,name="department"),
     path('deptview/',departmentview,name="departmentview"),
     path('marks/',marks,name="marks"),
+    path('departmentupdate/<id>',departmentupdate,name="departmentupdate"),
+
 
 
 

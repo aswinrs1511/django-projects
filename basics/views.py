@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 
 from basics.models import StudentDepartment
 
@@ -122,4 +122,22 @@ def marks(request):
 
 
     return render(request,"marks.html")
+
+
+
+def departmentupdate(request,id):
+    getdepartments=StudentDepartment.objects.get(id=id)
+    if(request.method=="POST"):
+        data=request.POST
+        
+        deptname=data.get("textdepartmentname")
+        deptdesc=data.get("textdepartmentdesc")
+        
+        getdepartments.DEPT_NAME=deptname
+        getdepartments.DEPT_DESC=deptdesc
+
+        getdepartments.save()
+
+        return redirect('/deptview/')
+    return render(request,'departmentupdate.html',context={'getdepartments':getdepartments})
 
