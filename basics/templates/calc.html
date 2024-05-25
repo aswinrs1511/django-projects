@@ -1,43 +1,108 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Calculator</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-  </head>
-  
-  <body style="background-color:powderblue;"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px; /* Adjusted max-width for better button layout */
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        td {
+            padding: 8px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: calc(25% - 5px);
+            padding: 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            font-size: medium;
+            display: inline-block;
+        }
+
+        button[type="submit"]:last-child {
+            margin-right: 0;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
     {% extends 'index.html' %}
     {% block content %}
-    
-    <form method="POST">
-      {% csrf_token %}
-      <h1>Calculator</h1>
-      <table>
-        <tr> 
-          <td>First Number:</td>
-          <td>
-            <input type="text" name="firstNumber" placeholder="Enter Your First Number" required/>
-          </td>
-        </tr>
-        <tr>
-          <td>Last Number:</td>
-          <td>
-            <input type="text" name="secondNumber" placeholder="Enter Your Second Number" required/>
-          </td>
-        </tr>
-      </table>
-      <p></p>
+
+    <div class="container">
+        <h1>Calculator</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                <tr> 
+                    <td>First Number:</td>
+                    <td>
+                        <input type="text" name="firstNumber" placeholder="Enter Your First Number" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Number:</td>
+                    <td>
+                        <input type="text" name="secondNumber" placeholder="Enter Your Second Number" required/>
+                    </td>
+                </tr>
+            </table>
             <button type="submit" name="Add">ADD</button>
             <button type="submit" name="Subtract">SUB</button>
             <button type="submit" name="Multiply">MUL</button>
             <button type="submit" name="Divide">DIV</button>
-    </form>
+        </form>
 
-        
-            
-        
-        <p>{{ result }}</p>
-  {% endblock %}
+        <p class="result">{{ result }}</p>
+    </div>
 
-  </body>
+    {% endblock %}
+</body>
 </html>
