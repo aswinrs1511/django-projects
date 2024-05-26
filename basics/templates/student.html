@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>
-        Update Department
-    </title>
+    <title>Department Form</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
         body {
@@ -74,24 +72,36 @@
     {% block content %}
 
     <div class="container">
-        <h1>Update Department</h1>
+        <h1>Student Form</h1>
         <form method="POST">
             {% csrf_token %}
             <table>
                 <tr> 
-                    <td>Department Name:</td>
+                    <td>Student Name:</td>
                     <td>
-                        <input type="text" name="textdepartmentname" placeholder="Enter Department Name" required/>
+                        <input type="text" name="textstudentname" placeholder="Enter Name" required/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Description:</td>
+                    <td>Email of Student</td>
                     <td>
-                        <input type="text" name="textdepartmentdesc" placeholder="Enter Description" required/>
+                        <input type="text" name="textstudentemail" placeholder="Enter Email" required/>
                     </td>
+                </tr>
+                <tr>
+                    <td>Department</td>
+                    <td>
+                        <select name="dropdowndepartment">
+                            <option selected_disable>---SELECT ANY DEPT---</option>
+                            {% for department in getdepartments %}
+                            <option>{{department.DEPT_NAME}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>        
                 </tr>
             </table>
             <button type="submit" name="submit">Save</button>
+            <br/>
             {{ result }}
         </form>
     </div>

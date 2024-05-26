@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'index.html' %}
+    {% block content %}
+    <div class="container">
+        <h2>Department List</h2>
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+            {% for student in getstudents %}
+            <tr>
+                <td>{{ student.STU_NAME }}</td>
+                <td>{{ student.STU_EMAIL }}</td>
+                <td>{{ student.STU_DEPT }}</td>
+                <td>
+                    <a href="/studentupdate/{{ student.id }}">Edit</a>
+                    <a href="{% url 'delete_student' student.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endblock %}
+</body>
+</html>

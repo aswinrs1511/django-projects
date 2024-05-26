@@ -29,6 +29,10 @@ urlpatterns = [
     path('deptview/',departmentview,name="departmentview"),
     path('marks/',marks,name="marks"),
     path('departmentupdate/<id>',departmentupdate,name="departmentupdate"),
+    path('student/',student,name="student"),
+    path('studentview/',studentview,name="studentview"),
+    path('student/delete/<int:student_id>/', delete_student, name="delete_student"),
+
 
 
 

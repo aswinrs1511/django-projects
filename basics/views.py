@@ -1,6 +1,6 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 
-from basics.models import StudentDepartment
+from basics.models import StudentDepartment, StudentDetails
 
 
 # Create your views here.
@@ -141,3 +141,33 @@ def departmentupdate(request,id):
         return redirect('/deptview/')
     return render(request,'departmentupdate.html',context={'getdepartments':getdepartments})
 
+
+
+def student(request):
+    getdepartments=StudentDepartment.objects.all()
+
+    if request.method=="POST":
+        data = request.POST
+
+        studentname=data.get('textstudentname')
+        studentemail=data.get('textstudentemail')
+        studentdepartment=data.get('dropdowndepartment')
+
+        StudentDetails.objects.create(STU_NAME=studentname,STU_EMAIL=studentemail,STU_DEPT=studentdepartment)
+        result = "Student details saved successfully "
+        return render(request,'student.html',context={'result':result})
+
+
+    return render(request,'student.html',context={'getdepartments':getdepartments})
+
+
+def studentview(request):
+    getstudents=StudentDetails.objects.all()
+    return render(request,'studentview.html',context={'getstudents':getstudents})
+
+def delete_student(request, student_id):
+    student = get_object_or_404(StudentDetails, id=student_id)
+    if request.method == "POST":
+        student.delete()
+        return redirect('studentview')  # Update to match the name of your student list view
+    return render(request, 'confirm_delete.html', {'student': student})
