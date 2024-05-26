@@ -32,6 +32,8 @@ urlpatterns = [
     path('student/',student,name="student"),
     path('studentview/',studentview,name="studentview"),
     path('student/delete/<int:student_id>/', delete_student, name="delete_student"),
+    path('studentupdate/<id>',studentupdate,name="studentupdate"),
+
 
 
 

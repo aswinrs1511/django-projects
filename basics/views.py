@@ -171,3 +171,30 @@ def delete_student(request, student_id):
         student.delete()
         return redirect('studentview')  # Update to match the name of your student list view
     return render(request, 'confirm_delete.html', {'student': student})
+
+
+
+def studentupdate(request, id):
+    getdepartments = StudentDepartment.objects.all()
+    getstudents = StudentDetails.objects.get(id=id)
+    
+    if request.method == "POST":
+        data = request.POST
+        
+        studentname = data.get('textstudentname')
+        studentemail = data.get('textstudentemail')
+        studentdepartment = data.get('dropdowndepartment')
+        
+        getstudents.STU_NAME = studentname
+        getstudents.STU_EMAIL = studentemail
+        getstudents.STU_DEPT = studentdepartment
+        
+        getstudents.save()
+        
+        return redirect('/studentview/')
+    
+    context = {
+        'getdepartments': getdepartments,
+        'getstudents': getstudents
+    }
+    return render(request, 'studentupdate.html', context)

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        td {
+            padding: 8px;
+        }
+
+        input[type="text"], select {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            font-size: medium;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'index.html' %}
+    {% block content %}
+    <div class="container">
+        <h1>Update Student</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><label for="textstudentname">Student Name:</label></td>
+                    <td>
+                        <input type="text" id="textstudentname" name="textstudentname" placeholder="Enter Name" value="{{ getstudents.STU_NAME }}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="textstudentemail">Email of Student:</label></td>
+                    <td>
+                        <input type="text" id="textstudentemail" name="textstudentemail" placeholder="Enter Email" value="{{ getstudents.STU_EMAIL }}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="dropdowndepartment">Department:</label></td>
+                    <td>
+                        <select id="dropdowndepartment" name="dropdowndepartment">
+                            <option value="{{ getstudents.STU_DEPT }}">{{ getstudents.STU_DEPT }}</option>
+                            {% for department in getdepartments %}
+                            <option value="{{ department.DEPT_NAME }}">{{ department.DEPT_NAME }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" name="submit">Save</button>
+            <br/>
+            <div class="result">{{ result }}</div>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>
