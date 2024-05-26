@@ -33,6 +33,10 @@ urlpatterns = [
     path('studentview/',studentview,name="studentview"),
     path('student/delete/<int:student_id>/', delete_student, name="delete_student"),
     path('studentupdate/<id>',studentupdate,name="studentupdate"),
+    path('registration/',registration,name="registration"),
+    path('userlogin/',userlogin,name="userlogin"),
+    path('userlogout/',userlogout,name="userlogout"),
+
 
 
 

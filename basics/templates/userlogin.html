@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Department Form</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Register Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: powderblue;
             margin: 0;
             padding: 0;
         }
@@ -68,44 +67,33 @@
 </head>
 
 <body>
-    {% extends 'index.html' %}
-    {% block content %}
 
     <div class="container">
-        <h1>Student Form</h1>
+        <h1>Login</h1>
         <form method="POST">
             {% csrf_token %}
             <table>
                 <tr> 
-                    <td>Student Name:</td>
+                    <td>Userame:</td>
                     <td>
-                        <input type="text" name="textstudentname" placeholder="Enter Name" required/>
+                        <input type="text" name="textusername" placeholder="Enter username" required/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Email of Student</td>
+                    <td>Password:</td>
                     <td>
-                        <input type="text" name="textstudentemail" placeholder="Enter Email" required/>
+                        <input type="password" name="textpassword" placeholder="Enter Password" required/>
                     </td>
-                </tr>
-                <tr>
-                    <td>Department</td>
-                    <td>
-                        <select name="dropdowndepartment">
-                            <option disabled selected>---SELECT ANY DEPT---</option>
-                            {% for department in getdepartments %}
-                            <option>{{ department.DEPT_NAME }}</option>
-                            {% endfor %}
-                        </select>
-                    </td>        
                 </tr>
             </table>
-            <button type="submit" name="submit">Save</button>
+            <button type="submit" name="buttonSubmit">Submit</button>
+            {{result}}
             <br/>
-            {{ result }}
+            <br/>
+      <a href="/registration" type="submit">Create new Account</a>
+            
         </form>
     </div>
 
-    {% endblock %}
 </body>
 </html>

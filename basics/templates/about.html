@@ -4,7 +4,14 @@
     {% extends 'index.html' %}
     {% block content %}
     
-    <h1>ABOUT PAGE</h1>   
+    <h1>ABOUT PAGE</h1>     
+
+      {{request.user}}
+      {{request.user.first_name}}
+      {{requrst.user.last_name}}
+
+      <a href="/userlogout" type="submit">Logout</a>
+
   {% endblock %}
 
 </body>

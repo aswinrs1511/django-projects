@@ -1,7 +1,8 @@
 from django.shortcuts import render , redirect , get_object_or_404
 
 from basics.models import StudentDepartment, StudentDetails
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate , login,logout
 
 # Create your views here.
 def about(request):
@@ -198,3 +199,53 @@ def studentupdate(request, id):
         'getstudents': getstudents
     }
     return render(request, 'studentupdate.html', context)
+
+
+
+
+
+
+
+def registration(request):
+    if request.method == "POST":
+        data = request.POST
+        firstname = data.get("textfirstname")
+        lastname = data.get("textlastname")
+        username = data.get("textusername")
+        password = data.get("textpassword")
+        user=User.objects.filter(username=username)
+        if user.exists():
+            result = "Username already exists"
+            return render(request, "registration.html", context={'result': result})
+        
+        user = User.objects.create(username=username,first_name=firstname, last_name=lastname)
+        user.set_password(password)
+        user.save()
+        result = "Registration successful"
+        return render(request, "registration.html", context={'result': result})
+    
+    return render(request, "registration.html")
+        
+
+def userlogin(request):
+    if request.method == "POST":
+        data = request.POST
+        username = data.get("textusername")
+        password = data.get("textpassword")
+        user=User.objects.filter(username=username)
+        if not user.exists():
+            result="User doesnot exist"
+            return render(request,"userlogin.html",context={"result":result})
+        user = authenticate(username=username,password=password)
+        if user is None:
+            result = "Incorrect password"
+            return render(request,"userlogin.html",context={"result":result})
+
+        else:
+            login(request,user)
+            return redirect('/about')
+    return render(request,"userlogin.html")
+
+def userlogout(request):
+    logout(request)
+    return redirect('/userlogin')
